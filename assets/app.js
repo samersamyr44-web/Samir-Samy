@@ -8,6 +8,11 @@ const productButtons = document.querySelectorAll(
 );
 
 const modalImage = document.getElementById("modal-product-image");
+const modalTitle = document.getElementById("modal-product-title");
+const modalPrice = document.getElementById("modal-product-price");
+const modalDescription = document.getElementById(
+  "modal-product-description"
+);
 
 // Color elements
 const colorWhite = document.getElementById("color-white");
@@ -75,6 +80,9 @@ productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
     // Shopify product image
     modalImage.src = button.dataset.productImage;
+    modalTitle.textContent = button.dataset.productTitle;
+modalPrice.textContent = button.dataset.productPrice;
+modalDescription.textContent = button.dataset.productDescription;
 
     const colors = productColors[index];
 
