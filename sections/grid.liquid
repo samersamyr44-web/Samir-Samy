@@ -44,14 +44,20 @@
           >
         {% endif %}
 
-        <button
-          type="button"
-          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
-          data-product-id="{{ product.id }}"
-          aria-label="View product {{ product.title | escape }}"
-        >
-          +
-        </button>
+<button
+  type="button"
+  class="absolute left-[256.5px] top-[238px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | file_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
       </div>
     {% endif %}
 
