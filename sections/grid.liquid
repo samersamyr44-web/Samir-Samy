@@ -16,17 +16,18 @@ class="mx-auto w-[1337px] pt-[90px] max-[376px]:w-[342px] max-[376px]:pt-[40px]"
     {% assign product = section.settings.product_1 %}
 
     {% if product %}
-      <div
-        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-      >
-        <img
-          src="{{ product.featured_image | image_url: width: 866 }}"
-          alt="{{ product.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
-        >
-      </div>
+<div
+  class="product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+  data-product-handle="{{ product.handle }}"
+>
+  <img
+    src="{{ product.featured_image | image_url: width: 866 }}"
+    alt="{{ product.title | escape }}"
+    width="433"
+    height="444"
+    class="!h-full !w-full object-cover"
+  >
+</div>
     {% endif %}
   </div>
 </section>
