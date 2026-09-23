@@ -105,10 +105,16 @@
         "product_5": "classic-varsity-top",
         "product_6": "dark-denim-top"
       }
+    },
+    "banner_kYUUky": {
+      "type": "banner",
+      "name": "Banner",
+      "settings": {}
     }
   },
   "order": [
     "hero_jVaWmY",
+    "banner_kYUUky",
     "grid_6J8HkK"
   ]
 }
