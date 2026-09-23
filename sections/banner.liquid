@@ -109,7 +109,7 @@
 >
   <!-- Desktop Frame 1 -->
   <img
-src="{{ 'Frame1.svg' | file_url }}"
+src="{{ 'Frame1.svg' | asset_url }}"
 width="1440"
 height="390"
     alt=""
@@ -119,16 +119,17 @@ height="390"
 
   <!-- Mobile Frame 1 -->
 <img
-  src="{{ 'frame1-crop.jpg' | file_url }}"
+  src="{{ 'Frame1-crop.jpg' | asset_url }}"
+    width="686"
+  height="264"
   alt=""
   aria-hidden="true"
-  width="686"
-  height="264"
+
   class="hidden max-[376px]:absolute max-[376px]:left-0 max-[376px]:top-[157px] max-[376px]:block max-[376px]:h-[264px] max-[376px]:w-[686px]"
 >
   <!-- Desktop Frame 2 -->
 <img
-  src="{{ 'Frame2.svg' | file_url }}"
+  src="{{ 'Frame2.svg' | asset_url }}"
   alt=""
   width="890"
   height="402"
