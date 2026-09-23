@@ -1,5 +1,21 @@
+<style>
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 433px);
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+
+  @media (max-width: 376px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 169px);
+      column-gap: 4px;
+      row-gap: 4px;
+    }
+  }
+</style>
+
 <section
-  id="products"
   class="mx-auto w-[1337px] pt-[90px] max-[376px]:w-[342px] max-[376px]:pt-[40px]"
 >
   <!-- Section Title -->
@@ -10,104 +26,170 @@
   </h2>
 
   <!-- Products Container -->
-  <div
-    class="mt-[30px] grid w-[1339px] grid-cols-3 gap-[20px] max-[376px]:mt-[20px] max-[376px]:w-[342px] max-[376px]:grid-cols-2 max-[376px]:gap-[4px]"
-  >
+  <div class="products-grid mt-[30px] max-[376px]:mt-[20px]">
+
     <!-- Product 1 -->
-    {% if section.settings.product_1 %}
+    {% assign product = section.settings.product_1 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_1.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_1.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_1.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
 
     <!-- Product 2 -->
-    {% if section.settings.product_2 %}
+    {% assign product = section.settings.product_2 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_2.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_2.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_2.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
 
     <!-- Product 3 -->
-    {% if section.settings.product_3 %}
+    {% assign product = section.settings.product_3 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_3.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_3.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_3.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
 
     <!-- Product 4 -->
-    {% if section.settings.product_4 %}
+    {% assign product = section.settings.product_4 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_4.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_4.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_4.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
 
     <!-- Product 5 -->
-    {% if section.settings.product_5 %}
+    {% assign product = section.settings.product_5 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_5.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_5.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_5.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
 
     <!-- Product 6 -->
-    {% if section.settings.product_6 %}
+    {% assign product = section.settings.product_6 %}
+    {% if product != blank %}
       <div
-        class="custom-product-card relative h-[444px] w-[433px] cursor-pointer max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
-        data-product-handle="{{ section.settings.product_6.handle }}"
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
       >
-        <img
-          src="{{ section.settings.product_6.featured_image | image_url: width: 866 }}"
-          alt="{{ section.settings.product_6.title | escape }}"
-          width="433"
-          height="444"
-          class="!h-full !w-full object-cover"
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+        <button
+          type="button"
+          class="absolute right-[20px] top-[20px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-white text-[24px] leading-none max-[376px]:right-[10px] max-[376px]:top-[10px]"
+          data-product-id="{{ product.id }}"
+          aria-label="View product {{ product.title | escape }}"
         >
+          +
+        </button>
       </div>
     {% endif %}
+
   </div>
 </section>
 
@@ -115,15 +197,41 @@
 {
   "name": "Grid",
   "settings": [
-    { "type": "product", "id": "product_1", "label": "Product 1" },
-    { "type": "product", "id": "product_2", "label": "Product 2" },
-    { "type": "product", "id": "product_3", "label": "Product 3" },
-    { "type": "product", "id": "product_4", "label": "Product 4" },
-    { "type": "product", "id": "product_5", "label": "Product 5" },
-    { "type": "product", "id": "product_6", "label": "Product 6" }
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "product",
+      "id": "product_5",
+      "label": "Product 5"
+    },
+    {
+      "type": "product",
+      "id": "product_6",
+      "label": "Product 6"
+    }
   ],
   "presets": [
-    { "name": "Grid" }
+    {
+      "name": "Grid"
+    }
   ]
 }
 {% endschema %}
