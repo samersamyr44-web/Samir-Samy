@@ -54,6 +54,13 @@
   data-product-description="{{ product.description | strip_html | escape }}"
   aria-label="View product {{ product.title | escape }}"
 >
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
 </button>
       </div>
     {% endif %}
