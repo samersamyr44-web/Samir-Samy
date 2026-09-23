@@ -10,9 +10,16 @@
   </h2>
 
   <!-- Products Grid -->
-  <div
-    class="mt-[30px] grid w-[1339px] grid-cols-3 gap-[20px] max-[376px]:mt-[20px] max-[376px]:w-[342px] max-[376px]:grid-cols-2 max-[376px]:gap-[4px]"
-  >
+<div
+  style="
+    display: grid !important;
+    grid-template-columns: repeat(3, 433px) !important;
+    column-gap: 20px !important;
+    row-gap: 20px !important;
+    width: 1339px !important;
+    margin-top: 30px;
+  "
+>
     <!-- Product 1 -->
     {% if section.settings.product_1 %}
       <div
