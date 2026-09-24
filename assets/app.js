@@ -139,3 +139,82 @@ productButtons.forEach((button,index)=>{
   })
 })
 
+// close modal
+function closeModal(){
+  modal.classlist.add("hidden")
+  modalOverlay.classlist.add("hidden")
+
+  document.body.style.overflow = ""
+}
+
+closeModalBtn.addEventListener("click",closeModal)
+modalOverlay.addEventListener("click",closeModal)
+
+// color selectoion
+function selectedColor(color){
+  selectedColor = color
+
+  if(color === "white"){
+    colorSlider.style.left = "5px"
+    colorSlider.style.width = "131px"
+
+    whiteText.classlist.remove("text-black")
+    whiteText.classlist.add("text-white")
+
+    blackText.classlist.remove("text-white")
+    blackText.classlist.add("text-black")
+  }else{
+    colorSlider.style.left = "140px"
+    colorSlider.style.width = "130px"
+
+    
+    blackText.classlist.remove("text-black")
+    blackText.classlist.add("text-white")
+
+    whiteText.classlist.remove("text-white")
+    whiteText.classlist.add("text-black")
+  }
+}
+
+colorWhite.addEventListener("click",()=>selectColor("white"))
+colorBlack.addEventListener("click",()=>selectColor("black"))
+
+// size dropdown
+sizeToggle.addEventListener("click",()=>{
+  isSizeOpen = !isSizeOpen
+
+  sizeDropdown.classlist.toggle("hidden", !isSizeOpen)
+  if(isSizeOpen){
+    sizeArrow.classlist.add("rotate-180")
+    sizeValue.textContent = "Choose your size"
+
+    sizeValue.classlist.remove("left-0","w-[216px]", "text-center")
+    
+    sizeValue.classlist.add("left-[13px]")
+  }else{
+    sizeArrow.classlist.remove("rotate-180")
+
+    if(selectedColor){
+      sizeValue.textContent = selectedSize
+      sizeValue.classlist.remove("left-[13px]")
+
+      sizeValue.classlist.add("left-0","w-[216px]","tetx-center")
+    }
+  }
+})
+// size selection
+const sizeOptions = document.querySelectorAll(".size-option")
+
+sizeOptions.forEach((option)=>{
+  option.addEventListener("click",()=>{
+    selectedSize = option.dataset.size
+    sizeValue.textContent = selectedSize
+
+    sizeValue.classlist.remove("left-[13px]")
+
+    sizeValue.classlist.add("left-0","w-[216px]","text-center")
+    sizeDropdown.classlist.add("hidden")
+    sizeArrow.classlist.remove("rotate-180")
+    isSizeOpen = false
+  })
+})
