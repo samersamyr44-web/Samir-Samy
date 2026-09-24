@@ -1905,3 +1905,83 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   transform: scaleX(2.93);
   filter: brightness(0) invert(1);
 }
+
+/* ------------------------------------------------------------ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 433px);
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.product-card {
+  position: relative;
+  width: 433px;
+  height: 444px;
+}
+
+.product-modal-button {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 0;
+}
+
+.product-modal-button--1 {
+  left: 256.5px;
+  top: 238px;
+}
+
+.product-modal-button--2 {
+  left: 355.5px;
+  top: 222px;
+}
+
+.product-modal-button--3 {
+  left: 261px;
+  top: 82px;
+}
+
+.product-modal-button--4 {
+  left: 301.5px;
+  top: 71px;
+}
+
+.product-modal-button--5 {
+  left: 212.5px;
+  top: 104px;
+}
+
+.product-modal-button--6 {
+  left: 319.5px;
+  top: 164px;
+}
+
+.product-modal-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 376px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 169px);
+    column-gap: 4px;
+    row-gap: 4px;
+  }
+
+  .product-card {
+    width: 169px;
+    height: 186.42px;
+  }
+
+  .product-modal-button {
+    left: 101.29px;
+    top: 18px;
+    width: 15.714px;
+    height: 15.714px;
+  }
+}
