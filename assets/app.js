@@ -67,7 +67,7 @@ function findVariant(variants) {
 
 // Open product modal
 productButtons.forEach((button, index) => {
-  button.addEventListener("click", async () => {
+  button.addEventListener("click", () => {
     modalImage.src = button.dataset.productImage;
     currentProductHandle = button.dataset.productHandle;
 
