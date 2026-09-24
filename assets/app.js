@@ -28,6 +28,7 @@ const sizeToggle = document.getElementById("size-toggle");
 const sizeDropdown = document.getElementById("size-dropdown");
 const sizeArrow = document.getElementById("size-arrow");
 const sizeValue = document.getElementById("size-value");
+const addToCartBtn = document.getElementById("add-to-cart-btn");
 
 // Product colors
 const productColors = [
