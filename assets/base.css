@@ -1837,34 +1837,8 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   }
 }
 /* mobile hero image */
-/* .hero-mobile-image {
-  display: none;
-}
-
 @media screen and (max-width: 376px) {
-  .hero-mobile-image {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 157px;
-    width: 686px;
-    height: 264px;
-    max-width: none;
-  }
-} */
-
-.hero-mobile-image {
-  display: none !important;
-}
-
-@media screen and (max-width: 376px) {
-  .hero-mobile-image {
+  img.hero-mobile-image {
     display: block !important;
-    position: absolute;
-    left: 0;
-    top: 157px;
-    width: 686px;
-    height: 264px;
-    max-width: none;
   }
 }
