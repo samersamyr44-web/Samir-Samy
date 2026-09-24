@@ -1889,3 +1889,12 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     top: 11.5px;
   }
 }
+
+.shop-now-arrow {
+  filter: brightness(0) invert(1);
+}
+
+.group:hover .shop-now-arrow,
+.group:focus-visible .shop-now-arrow {
+  filter: brightness(0);
+}
