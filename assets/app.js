@@ -98,11 +98,35 @@ function findVariant(variants) {
 }
 
 addToCartBtn.addEventListener("click", async () => {
-  const variants = await getProductVariants();
-  const variant = findVariant(variants);
+  if (!selectedSize) {
+    alert("Please choose your size.");
+    return;
+  }
+const variants = await getProductVariants();
 
-  console.log("Selected variant:", variant);
+const variant = findVariant(variants);
+
+if (!variant) {
+  alert("This combination is not available.");
+  return;
+}
+
+const response = await fetch("/cart/add.js", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    items: [
+      {
+        id: variant.id,
+        quantity: 1,
+      },
+    ],
+  }),
 });
+
+console.log("Selected variant:", variant);
 
 // Open product modal
 productButtons.forEach((button, index) => {
@@ -110,6 +134,9 @@ productButtons.forEach((button, index) => {
     modalImage.src = button.dataset.productImage;
     currentProductHandle = button.dataset.productHandle;
     currentProductIndex = index;
+    selectedColor = productColors[index].first.toLowerCase();
+    selectedSize = "";
+sizeValue.textContent = "Choose your size";
 
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
