@@ -1836,6 +1836,7 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
 }
+/* mobile hero image */
 .hero-mobile-image {
   display: none;
 }
