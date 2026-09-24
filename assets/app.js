@@ -44,6 +44,18 @@ let selectedSize = "";
 let isSizeOpen = false;
 let currentProductHandle = "";
 
+async function getProductVariants() {
+  const response = await fetch(`/products/${currentProductHandle}.js`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch product");
+  }
+
+  const product = await response.json();
+
+  return product.variants;
+}
+
 // Open product modal
 productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
