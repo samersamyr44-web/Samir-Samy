@@ -216,7 +216,7 @@ menuToggle.addEventListener("click", () => {
     mobilePageContent.classList.remove("max-[376px]:mt-0");
     mobilePageContent.classList.add("max-[376px]:mt-[124px]");
 
-    menuIcon.src = "assets/images/close-menu.jpg";
+    menuIcon.src = "assets/close-menu.jpg";
 
     menuIcon.classList.remove(
       "h-[10px]",
@@ -241,7 +241,7 @@ menuToggle.addEventListener("click", () => {
       "max-[376px]:mt-0"
     );
 
-    menuIcon.src = "assets/images/open-menu.jpg";
+    menuIcon.src = "assets/open-menu.jpg";
 
     menuIcon.classList.remove(
       "h-[13px]",
