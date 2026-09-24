@@ -77,7 +77,7 @@ let currentProductHandle = "";
 let currentProductIndex = 0;
 
 async function getProductVariants() {
-  const response = await fetch(/products/${currentProductHandle}.js);
+  const response = await fetch(`/products/${currentProductHandle}.js`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch product");
