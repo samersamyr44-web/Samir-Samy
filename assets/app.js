@@ -116,14 +116,22 @@ const response = await fetch("/cart/add.js", {
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({
-    items: [
-      {
-        id: variant.id,
-        quantity: 1,
-      },
-    ],
-  }),
+body: JSON.stringify({
+  items: [
+    {
+      id: variant.id,
+      quantity: 1,
+    },
+    ...(selectedSize === "M" && selectedColor === "black"
+      ? [
+          {
+            id: 50520210342075,
+            quantity: 1,
+          },
+        ]
+      : []),
+  ],
+}),
 });
 if (!response.ok) {
   throw new Error("Failed to add product to cart.");
