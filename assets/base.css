@@ -1842,3 +1842,13 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     display: block !important;
   }
 }
+/* mobile menu toggle */
+.mobile-menu-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 376px) {
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+}
