@@ -48,6 +48,7 @@ let currentProductHandle = "";
 productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
     modalImage.src = button.dataset.productImage;
+    currentProductHandle = button.dataset.productHandle;
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
     modalDescription.textContent = button.dataset.productDescription;
