@@ -1898,3 +1898,10 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 .group:focus-visible .shop-now-arrow {
   filter: brightness(0);
 }
+
+.modal-arrow {
+  left: 193.94px;
+  top: 12px;
+  transform: scaleX(2.93);
+  filter: brightness(0) invert(1);
+}
