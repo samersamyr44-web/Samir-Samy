@@ -40,8 +40,9 @@ const productColors = [
 ];
 
 let selectedColor = "white";
-let isSizeOpen = false;
 let selectedSize = "";
+let isSizeOpen = false;
+let currentProductHandle = "";
 
 // Open product modal
 productButtons.forEach((button, index) => {
