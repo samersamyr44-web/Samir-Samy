@@ -139,18 +139,19 @@ modalOverlay.addEventListener("click", closeModal);
 
 // Color selection
 function selectColor(color) {
-  selectedColor = color;
+  selectedColor = color.toLowerCase();
 
-  const isWhite = color === "white";
+  const isFirstColor =
+    selectedColor === productColors[currentProductIndex].first.toLowerCase();
 
-  colorSlider.style.left = isWhite ? "5px" : "140px";
-  colorSlider.style.width = isWhite ? "131px" : "130px";
+  colorSlider.style.left = isFirstColor ? "5px" : "140px";
+  colorSlider.style.width = isFirstColor ? "131px" : "130px";
 
-  whiteText.classList.toggle("text-white", isWhite);
-  whiteText.classList.toggle("text-black", !isWhite);
+  whiteText.classList.toggle("text-white", isFirstColor);
+  whiteText.classList.toggle("text-black", !isFirstColor);
 
-  blackText.classList.toggle("text-white", !isWhite);
-  blackText.classList.toggle("text-black", isWhite);
+  blackText.classList.toggle("text-white", !isFirstColor);
+  blackText.classList.toggle("text-black", isFirstColor);
 }
 
 colorWhite.addEventListener("click", () => selectColor("white"));
