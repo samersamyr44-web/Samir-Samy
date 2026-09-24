@@ -65,7 +65,7 @@ productButtons.forEach((button, index) => {
     const variants = await getProductVariants();
 
     console.log("Product:", currentProductHandle);
-    console.log("Variants:", variants);
+    console.table(variants);
 
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
