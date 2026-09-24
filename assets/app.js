@@ -148,6 +148,7 @@ setTimeout(() => {
   addToCartBtn.classList.remove("is-added");
   buttonText.textContent = "ADD TO CART";
 }, 1500);
+});
 
 // Open product modal
 productButtons.forEach((button, index) => {
