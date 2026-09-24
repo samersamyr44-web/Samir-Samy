@@ -1836,3 +1836,18 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
 }
+.hero-mobile-image {
+  display: none;
+}
+
+@media screen and (max-width: 376px) {
+  .hero-mobile-image {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 157px;
+    width: 686px;
+    height: 264px;
+    max-width: none;
+  }
+}
