@@ -71,11 +71,14 @@ productButtons.forEach((button, index) => {
     modalImage.src = button.dataset.productImage;
     currentProductHandle = button.dataset.productHandle;
 
-    const variants = await getProductVariants();
+const variants = await getProductVariants();
 
-    console.log("Product:", currentProductHandle);
-    console.table(variants);
+const variant = findVariant(variants);
 
+console.log("Product:", currentProductHandle);
+console.log("Selected size:", selectedSize);
+console.log("Selected color:", selectedColor);
+console.log("Selected variant:", variant);
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
     modalDescription.textContent = button.dataset.productDescription;
