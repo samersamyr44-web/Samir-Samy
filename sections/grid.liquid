@@ -1,249 +1,300 @@
+
+
 <style>
-  .products-grid{
-  display:grid;
-grid-template-columns:repeat(3,433px);
-column-gap:20px;
-row-gap:20px;
-}
-@media (max-width:376){
-.products-grid{
-  grid-template-columns:repeat(2,169px);
-  column-gap:4px;
-}}
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 433px);
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+
+  @media (max-width: 376px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 169px);
+      column-gap: 4px;
+      row-gap: 4px;
+    }
+  }
 </style>
 
-<section class="mx-auto w-[1337px] pt-[90px] max-[376px]:w-[342px] max-[376px]:pt-[40px]">
-
-  <!--product section title-->
-  <h2 class="font-['Lustria'] text-[36px] font-normal leading-[43.2px] tracking-[0] max-[376px]:mx-auto max-[376px]:w-[248px] max-[376px]:text-center 
-    max-[376]:text-[24px] max-[376px]:leading-[28.8px]">
+<section
+  class="mx-auto w-[1337px] pt-[90px] max-[376px]:w-[342px] max-[376px]:pt-[40px]"
+>
+  <!-- Section Title -->
+  <h2
+    class="font-['Lustria'] text-[36px] font-normal leading-[43.2px] tracking-[0] max-[376px]:mx-auto max-[376px]:w-[248px] max-[376px]:text-center max-[376px]:text-[24px] max-[376px]:leading-[28.8px]"
+  >
     Tisso vison in the wild
   </h2>
 
-  <!-- product container-->
-
+  <!-- Products Container -->
   <div class="products-grid mt-[30px] max-[376px]:mt-[20px]">
 
-    <!--product1-->
+    <!-- Product 1 -->
     {% assign product = section.settings.product_1 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w:[169px] ">
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-  <button type="button"
-          class="absolute left-[256.5px] top-[238px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px]max-[376px]:w-[15.714px]"
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
 
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
+<button
+  type="button"
+  class="absolute left-[256.5px] top-[238px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-price="{{ product.price | money }}"
+  data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
 
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
+    <!-- Product 2 -->
+    {% assign product = section.settings.product_2 %}
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
 
-  </button>
+<button
+  type="button"
+  class="absolute left-[355.5px] top-[222px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+data-product-price="{{ product.price | money }}"
+data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
+
+    <!-- Product 3 -->
+    {% assign product = section.settings.product_3 %}
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+<button
+  type="button"
+  class="absolute left-[261px] top-[82px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+data-product-price="{{ product.price | money }}"
+data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
+
+    <!-- Product 4 -->
+    {% assign product = section.settings.product_4 %}
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+<button
+  type="button"
+  class="absolute left-[301.5px] top-[71px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+data-product-price="{{ product.price | money }}"
+data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
+
+    <!-- Product 5 -->
+    {% assign product = section.settings.product_5 %}
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+<button
+  type="button"
+  class="absolute left-[212.5px] top-[104px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+data-product-price="{{ product.price | money }}"
+data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
+
+    <!-- Product 6 -->
+    {% assign product = section.settings.product_6 %}
+    {% if product != blank %}
+      <div
+        class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+      >
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 1000 }}"
+            alt="{{ product.title | escape }}"
+            width="433"
+            height="444"
+            class="h-full w-full object-cover max-[376px]:h-[186.42px] max-[376px]:w-[169px]"
+          >
+        {% endif %}
+
+<button
+  type="button"
+  class="absolute left-[319.5px] top-[164px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px] max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
+  data-product-id="{{ product.id }}"
+  data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
+  data-product-title="{{ product.title | escape }}"
+data-product-price="{{ product.price | money }}"
+data-product-description="{{ product.description | strip_html | escape }}"
+  aria-label="View product {{ product.title | escape }}"
+>
+  <img
+    src="{{ 'open-modal.jpg' | asset_url }}"
+    alt=""
+    width="22"
+    height="22"
+    class="block h-full w-full object-cover"
+  >
+</button>
+      </div>
+    {% endif %}
+
   </div>
-  {% endif %}
-
-      <!--product2-->
-      {% assign product = section.settings.product_2 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]">
-
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-  <button type="button"
-          class="absolute left-[335.5px] top-[222px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
-
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
-
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
-  </button>
-  </div>
- 
-  {% endif %}
-      <!--product3-->
-      {% assign product = section.settings.product_3 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]">
-
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-
-  <button type="button"
-          class="absolute left-[261px] top-[82px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
-
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
-
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
-  </button>
-  </div>
- 
-  {% endif %}
-
-      <!--product4-->
-      {% assign product = section.settings.product_4 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]">
-
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-
-  <button type="button"
-          class="absolute left-[301.5px] top-[71px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
-
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
-
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
-  </button>
-  </div>
- 
-  {% endif %}
-      <!--product5-->
-      {% assign product = section.settings.product_5 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]">
-
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-
-  <button type="button"
-          class="absolute left-[212.5px] top-[104px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
-
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
-
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
-  </button>
-  </div>
- 
-  {% endif %}
-   </div>
-      <!--product6-->
-      {% assign product = section.settings.product_6 %}
-  {% if product != blank %}
-    <div
-    class="relative h-[444px] w-[433px] max-[376px]:h-[186.42px] max-[376px]:w-[169px]">
-
-    {% if product.featured_image %}
-      <img 
-      src="{{ product.featured_image  | image_url: width:1000 }}"
-      alt="{{ product.title |escape }}"
-      width="433"
-      height="444"
-      class="h-full w-full object-cover max-[376px]:w-[169] max-[376px]:h-[186.42px]">
-  {% endif %}
-
-  <button type="button"
-          class="absolute left-[319.5px] top-[164px] h-[22px] w-[22px] overflow-hidden rounded-full p-0 max-[376px]:left-[101.29px] max-[376px]:top-[18px]
-           max-[376px]:h-[15.714px] max-[376px]:w-[15.714px]"
-
-           data-product-id="{{ product.id }}"
-           data-product-image="{{ product.featured_image | image_url: width:1000  }}"
-           data-product-title="{{ product.title | escape }}"
-           data-product-price="{{ product.price |money }}"
-           data-product-description="{{ product.description |strip_html | escape}}"
-           aria-label="View product{{ product.title |escape }}">
-
-    <img
-      src="{{'open-modal.jpg' |asset_url }}"
-      alt=""
-      width="22"
-      height="22"
-      class="block h-full w-full object-cover">
-  </button>
-  </div>
- 
-  {% endif %}
 </section>
 
-<!--Modal Overlay -->
-<div id="modal-overlay">
-  
 
+<!-- Modal Overlay -->
+<div
+  id="modal-overlay"
+  class="fixed inset-0 z-40 hidden bg-black/30"
+></div>
+
+<!-- Product Modal -->
+<div
+  id="product-modal"
+  class="fixed left-1/2 top-1/2 z-50 hidden h-[447px] w-[311px] -translate-x-1/2 -translate-y-1/2 bg-white shadow-[0px_2px_4px_0px_#00000033]"
+>
+  <!-- Close Modal -->
+  <img
+    id="close-modal-btn"
+    src="{{ 'close-modal.svg' | asset_url }}"
+    alt="Close"
+    class="absolute left-[278.8px] top-[12.7px] h-[16px] w-[16px] cursor-pointer"
+  />
+
+  <!-- Product Image -->
+  <img
+    id="modal-product-image"
+    src="{{ 'product1.jpg' | asset_url }}"
+    alt=""
+    class="absolute left-[17px] top-[36px] h-[140px] w-[120px] object-cover"
+  />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </div>
