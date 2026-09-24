@@ -137,10 +137,17 @@ if (!response.ok) {
   throw new Error("Failed to add product to cart.");
 }
 
-const cartItem = await response.json();
+await response.json();
 
-console.log("Added to cart:", cartItem);
-});
+addToCartBtn.classList.add("is-added");
+
+const buttonText = addToCartBtn.querySelector("span");
+buttonText.textContent = "ADDED ✓";
+
+setTimeout(() => {
+  addToCartBtn.classList.remove("is-added");
+  buttonText.textContent = "ADD TO CART";
+}, 1500);
 
 // Open product modal
 productButtons.forEach((button, index) => {
