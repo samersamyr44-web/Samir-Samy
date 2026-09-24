@@ -29,6 +29,7 @@
             type="button"
             class="product-modal-button product-modal-button--{{ product_index }}"
             data-product-id="{{ product.id }}"
+             data-product-handle="{{ product.handle }}"
             data-product-image="{{ product.featured_image | image_url: width: 1000 }}"
             data-product-title="{{ product.title | escape }}"
             data-product-price="{{ product.price | money }}"
