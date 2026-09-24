@@ -129,7 +129,9 @@ if (!response.ok) {
   throw new Error("Failed to add product to cart.");
 }
 
-console.log("Selected variant:", variant);
+const cartItem = await response.json();
+
+console.log("Added to cart:", cartItem);
 
 // Open product modal
 productButtons.forEach((button, index) => {
