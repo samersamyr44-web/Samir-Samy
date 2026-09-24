@@ -1,12 +1,3 @@
-
-
-
-// ----------------------------------------------------------------------------------------
-
-
-
-
-
 // Modal elements
 const modal = document.getElementById("product-modal");
 const modalOverlay = document.getElementById("modal-overlay");
@@ -26,10 +17,8 @@ const modalDescription = document.getElementById(
 // Color elements
 const colorWhite = document.getElementById("color-white");
 const colorBlack = document.getElementById("color-black");
-
 const whiteText = document.getElementById("white-text");
 const blackText = document.getElementById("black-text");
-
 const colorSlider = document.getElementById("color-slider");
 const firstColorIndicator = document.getElementById("first-color-indicator");
 const secondColorIndicator = document.getElementById("second-color-indicator");
@@ -39,6 +28,7 @@ const sizeToggle = document.getElementById("size-toggle");
 const sizeDropdown = document.getElementById("size-dropdown");
 const sizeArrow = document.getElementById("size-arrow");
 const sizeValue = document.getElementById("size-value");
+const addToCartBtn = document.getElementById("add-to-cart-btn");
 
 // Product colors
 const productColors = [
@@ -81,14 +71,99 @@ const productColors = [
 ];
 
 let selectedColor = "white";
-let isSizeOpen = false;
 let selectedSize = "";
+let isSizeOpen = false;
+let currentProductHandle = "";
+let currentProductIndex = 0;
+
+async function getProductVariants() {
+  const response = await fetch(/products/${currentProductHandle}.js);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch product");
+  }
+
+  const product = await response.json();
+
+  return product.variants;
+}
+
+function findVariant(variants) {
+  return variants.find((variant) => {
+    return (
+      variant.option1 === selectedSize &&
+      variant.option2.toLowerCase() === selectedColor
+    );
+  });
+}
+
+addToCartBtn.addEventListener("click", async () => {
+  if (!selectedSize) {
+    alert("Please choose your size.");
+    return;
+  }
+
+  const variants = await getProductVariants();
+
+  const variant = findVariant(variants);
+
+  if (!variant) {
+    alert("This combination is not available.");
+    return;
+  }
+
+  const response = await fetch("/cart/add.js", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      items: [
+        {
+          id: variant.id,
+          quantity: 1,
+        },
+        ...(selectedSize === "M" && selectedColor === "black"
+          ? [
+              {
+                id: 50520210342075,
+                quantity: 1,
+              },
+            ]
+          : []),
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add product to cart.");
+  }
+
+  await response.json();
+
+  addToCartBtn.classList.add("is-added");
+
+  const buttonText = addToCartBtn.querySelector("span");
+  buttonText.textContent = "ADDED ✓";
+
+  setTimeout(() => {
+    addToCartBtn.classList.remove("is-added");
+    buttonText.textContent = "ADD TO CART";
+  }, 1500);
+});
 
 // Open product modal
 productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
-    // Shopify product image
     modalImage.src = button.dataset.productImage;
+    currentProductHandle = button.dataset.productHandle;
+    currentProductIndex = index;
+
+    selectedColor = productColors[index].first.toLowerCase();
+    selectedSize = "";
+
+    sizeValue.textContent = "Choose your size";
+
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
     modalDescription.textContent = button.dataset.productDescription;
@@ -103,7 +178,6 @@ productButtons.forEach((button, index) => {
 
     modal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
-
     document.body.style.overflow = "hidden";
   });
 });
@@ -112,7 +186,6 @@ productButtons.forEach((button, index) => {
 function closeModal() {
   modal.classList.add("hidden");
   modalOverlay.classList.add("hidden");
-
   document.body.style.overflow = "";
 }
 
@@ -121,65 +194,50 @@ modalOverlay.addEventListener("click", closeModal);
 
 // Color selection
 function selectColor(color) {
-  selectedColor = color;
+  selectedColor = color.toLowerCase();
 
-  if (color === "white") {
-    colorSlider.style.left = "5px";
-    colorSlider.style.width = "131px";
+  const isFirstColor =
+    selectedColor === productColors[currentProductIndex].first.toLowerCase();
 
-    whiteText.classList.remove("text-black");
-    whiteText.classList.add("text-white");
+  colorSlider.style.left = isFirstColor ? "5px" : "140px";
+  colorSlider.style.width = isFirstColor ? "131px" : "130px";
 
-    blackText.classList.remove("text-white");
-    blackText.classList.add("text-black");
-  } else {
-    colorSlider.style.left = "140px";
-    colorSlider.style.width = "130px";
+  whiteText.classList.toggle("text-white", isFirstColor);
+  whiteText.classList.toggle("text-black", !isFirstColor);
 
-    blackText.classList.remove("text-black");
-    blackText.classList.add("text-white");
-
-    whiteText.classList.remove("text-white");
-    whiteText.classList.add("text-black");
-  }
+  blackText.classList.toggle("text-white", !isFirstColor);
+  blackText.classList.toggle("text-black", isFirstColor);
 }
 
-colorWhite.addEventListener("click", () => selectColor("white"));
-colorBlack.addEventListener("click", () => selectColor("black"));
+colorWhite.addEventListener("click", () => {
+  selectColor(productColors[currentProductIndex].first);
+});
+
+colorBlack.addEventListener("click", () => {
+  selectColor(productColors[currentProductIndex].second);
+});
 
 // Size dropdown
+function updateSizeValue() {
+  sizeValue.classList.toggle("left-[13px]", isSizeOpen);
+  sizeValue.classList.toggle("left-0", !isSizeOpen);
+  sizeValue.classList.toggle("w-[216px]", !isSizeOpen);
+  sizeValue.classList.toggle("text-center", !isSizeOpen);
+}
+
 sizeToggle.addEventListener("click", () => {
   isSizeOpen = !isSizeOpen;
 
   sizeDropdown.classList.toggle("hidden", !isSizeOpen);
+  sizeArrow.classList.toggle("rotate-180", isSizeOpen);
 
   if (isSizeOpen) {
-    sizeArrow.classList.add("rotate-180");
-
     sizeValue.textContent = "Choose your size";
-
-    sizeValue.classList.remove(
-      "left-0",
-      "w-[216px]",
-      "text-center"
-    );
-
-    sizeValue.classList.add("left-[13px]");
-  } else {
-    sizeArrow.classList.remove("rotate-180");
-
-    if (selectedSize) {
-      sizeValue.textContent = selectedSize;
-
-      sizeValue.classList.remove("left-[13px]");
-
-      sizeValue.classList.add(
-        "left-0",
-        "w-[216px]",
-        "text-center"
-      );
-    }
+  } else if (selectedSize) {
+    sizeValue.textContent = selectedSize;
   }
+
+  updateSizeValue();
 });
 
 // Size selection
@@ -188,22 +246,13 @@ const sizeOptions = document.querySelectorAll(".size-option");
 sizeOptions.forEach((option) => {
   option.addEventListener("click", () => {
     selectedSize = option.dataset.size;
-
     sizeValue.textContent = selectedSize;
 
-    sizeValue.classList.remove("left-[13px]");
-
-    sizeValue.classList.add(
-      "left-0",
-      "w-[216px]",
-      "text-center"
-    );
-
+    isSizeOpen = false;
     sizeDropdown.classList.add("hidden");
-
     sizeArrow.classList.remove("rotate-180");
 
-    isSizeOpen = false;
+    updateSizeValue();
   });
 });
 
@@ -212,47 +261,29 @@ const menuToggle = document.getElementById("menu-toggle");
 const menuIcon = document.getElementById("menu-icon");
 const mobileMenu = document.getElementById("mobile-menu");
 
-const openMenuUrl = menuIcon.dataset.openMenuUrl;
-const closeMenuUrl = menuIcon.dataset.closeMenuUrl;
+const { openMenuUrl, closeMenuUrl } = menuIcon.dataset;
 
 let isMenuOpen = false;
+
+function updateMenuIcon() {
+  menuIcon.classList.toggle("h-[13px]", isMenuOpen);
+  menuIcon.classList.toggle("w-[12.73px]", isMenuOpen);
+  menuIcon.classList.toggle("h-[10px]", !isMenuOpen);
+  menuIcon.classList.toggle("w-[18px]", !isMenuOpen);
+}
 
 menuToggle.addEventListener("click", () => {
   isMenuOpen = !isMenuOpen;
 
-  if (isMenuOpen) {
-    mobileMenu.classList.remove("hidden");
-    mobileMenu.classList.add("flex");
+  mobileMenu.classList.toggle("hidden", !isMenuOpen);
+  mobileMenu.classList.toggle("flex", isMenuOpen);
 
-    menuIcon.src = closeMenuUrl;
+  menuIcon.src = isMenuOpen ? closeMenuUrl : openMenuUrl;
 
-    menuIcon.classList.remove(
-      "h-[10px]",
-      "w-[18px]"
-    );
+  updateMenuIcon();
 
-    menuIcon.classList.add(
-      "h-[13px]",
-      "w-[12.73px]"
-    );
-
-    menuToggle.setAttribute("aria-label", "Close menu");
-  } else {
-    mobileMenu.classList.add("hidden");
-    mobileMenu.classList.remove("flex");
-
-    menuIcon.src = openMenuUrl;
-
-    menuIcon.classList.remove(
-      "h-[13px]",
-      "w-[12.73px]"
-    );
-
-    menuIcon.classList.add(
-      "h-[10px]",
-      "w-[18px]"
-    );
-
-    menuToggle.setAttribute("aria-label", "Open menu");
-  }
+  menuToggle.setAttribute(
+    "aria-label",
+    isMenuOpen ? "Close menu" : "Open menu"
+  );
 });
