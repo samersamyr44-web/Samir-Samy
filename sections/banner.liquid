@@ -1,23 +1,26 @@
-<section class="relative h-16 w-full item-center justify-center gap-[360px] bg[#F5F5F5] px-[50px] py-[10px]
-   max-[376px]:h-[65px] max-[376px]:justify-start max-[376px]:gap-0 max-[376px]:bg-[#F7F7F7] max-[376px]:px-4 max-[376px]:py-[23px]
-    max-[376px]:shadow-[0px_2px_4px-0px_#00000026]">
+<section class="relative border-b border-gray-200">
+   <header class="relative z-30 flex h-16 w-full items-center justify-center gap-[360px] bg-[#F5F5F5] px-[50px] py-[10px] 
+    max-[376px]:h-[65px] max-[376px]:justify-start max-[376px]:gap-0 max-[376px]:bg-[#F7F7F7] max-[376px]:px-4 
+    max-[376px]:py-[23px] max-[376px]:shadow-[0px_2px_4px_0px_#00000026]" > 
+  <!-- Mobile Menu Toggle --> 
+  <button id="menu-toggle"
+     type="button"
+      aria-label="Open menu"
+       class="mobile-menu-toggle max-[376px]:absolute max-[376px]:left-4 max-[376px]:top-[27.5px]" >
 
-    <!--mobile menu toggle-->
-    <button id="menu-toggle"
-    type="button" aria-label="Open menu" class="mobile-menu-toggle max-[376px]:absolute max-[376px]:left-a max-[376px]:top-[27.5px]">
-      <img id="menu-icon"
-    src="{{ open-menu.jpg | asset_url }}"
-  alt=""
-width="18"
-height="10"
-class="h-[10px] w-[18px]">
-
-    </button>
-  
-  <!--logo -->
-  <img src="{{ 'logo.svg |asset_url' }}"
-  alt="TISSON VISION"
-width="151"
-height="19"
-class="h-[19px] w-[151.44px] max-[376px]">
+        <img id="menu-icon"
+          src="{{ 'open-menu.jpg' | asset_url }}"
+            data-open-menu-url="{{ 'open-menu.jpg' | asset_url }}"
+            data-close-menu-url="{{ 'close-menu.jpg' | asset_url }}"
+            alt=""
+            width="18"
+            height="10"
+            class="h-[10px] w-[18px]" >
+  </button>
+  <!-- Logo -->
+        <img src="{{ 'logo.svg' | asset_url }}"
+              alt="TISSO VISION"
+              width="151"
+              height="19"
+              class="h-[19px] w-[151.44px] max-[376px]:absolute max-[376px]:left-1/2 max-[376px]:top-[23px] max-[376px]:-translate-x-1/2" >
 </section>
