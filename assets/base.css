@@ -1854,17 +1854,17 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 } */
 
 .hero-mobile-image {
-  display: none;
+  display: none !important;
 }
 
 @media screen and (max-width: 376px) {
   .hero-mobile-image {
-    display: block;
+    display: block !important;
     position: absolute;
     left: 0;
     top: 157px;
     width: 686px;
-    height: auto;
+    height: 264px;
     max-width: none;
   }
 }
