@@ -1877,3 +1877,15 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   top: 11px;
   transform: scaleX(2);
 }
+.shop-now-arrow {
+  left: 162.61px;
+  top: 14.49px;
+  transform: scaleX(2);
+}
+
+@media screen and (max-width: 376px) {
+  .shop-now-arrow {
+    left: 139.5px;
+    top: 11.5px;
+  }
+}
