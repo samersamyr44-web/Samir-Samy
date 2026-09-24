@@ -132,6 +132,7 @@ if (!response.ok) {
 const cartItem = await response.json();
 
 console.log("Added to cart:", cartItem);
+});
 
 // Open product modal
 productButtons.forEach((button, index) => {
