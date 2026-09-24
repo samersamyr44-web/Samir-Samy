@@ -74,6 +74,7 @@ let selectedColor = "white";
 let selectedSize = "";
 let isSizeOpen = false;
 let currentProductHandle = "";
+let currentProductIndex = 0;
 
 async function getProductVariants() {
   const response = await fetch(`/products/${currentProductHandle}.js`);
