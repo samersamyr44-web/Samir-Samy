@@ -17,10 +17,8 @@ const modalDescription = document.getElementById(
 // Color elements
 const colorWhite = document.getElementById("color-white");
 const colorBlack = document.getElementById("color-black");
-
 const whiteText = document.getElementById("white-text");
 const blackText = document.getElementById("black-text");
-
 const colorSlider = document.getElementById("color-slider");
 const firstColorIndicator = document.getElementById("first-color-indicator");
 const secondColorIndicator = document.getElementById("second-color-indicator");
@@ -33,42 +31,12 @@ const sizeValue = document.getElementById("size-value");
 
 // Product colors
 const productColors = [
-  {
-    first: "White",
-    firstIndicator: "#FFFFFF",
-    second: "Black",
-    secondIndicator: "#000000",
-  },
-  {
-    first: "Blue",
-    firstIndicator: "#0D499F",
-    second: "Black",
-    secondIndicator: "#000000",
-  },
-  {
-    first: "Red",
-    firstIndicator: "#B20F36",
-    second: "Grey",
-    secondIndicator: "#AFAFB7",
-  },
-  {
-    first: "White",
-    firstIndicator: "#FFFFFF",
-    second: "Black",
-    secondIndicator: "#000000",
-  },
-  {
-    first: "Gray",
-    firstIndicator: "#AFAFB7",
-    second: "Black",
-    secondIndicator: "#000000",
-  },
-  {
-    first: "Blue",
-    firstIndicator: "#0D499F",
-    second: "Black",
-    secondIndicator: "#000000",
-  },
+  ["White", "#FFFFFF", "Black", "#000000"],
+  ["Blue", "#0D499F", "Black", "#000000"],
+  ["Red", "#B20F36", "Grey", "#AFAFB7"],
+  ["White", "#FFFFFF", "Black", "#000000"],
+  ["Gray", "#AFAFB7", "Black", "#000000"],
+  ["Blue", "#0D499F", "Black", "#000000"],
 ];
 
 let selectedColor = "white";
@@ -78,23 +46,22 @@ let selectedSize = "";
 // Open product modal
 productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
-    // Shopify product image
     modalImage.src = button.dataset.productImage;
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
     modalDescription.textContent = button.dataset.productDescription;
 
-    const colors = productColors[index];
+    const [firstColor, firstIndicator, secondColor, secondIndicator] =
+      productColors[index];
 
-    whiteText.textContent = colors.first;
-    blackText.textContent = colors.second;
+    whiteText.textContent = firstColor;
+    blackText.textContent = secondColor;
 
-    firstColorIndicator.style.backgroundColor = colors.firstIndicator;
-    secondColorIndicator.style.backgroundColor = colors.secondIndicator;
+    firstColorIndicator.style.backgroundColor = firstIndicator;
+    secondColorIndicator.style.backgroundColor = secondIndicator;
 
     modal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
-
     document.body.style.overflow = "hidden";
   });
 });
@@ -103,7 +70,6 @@ productButtons.forEach((button, index) => {
 function closeModal() {
   modal.classList.add("hidden");
   modalOverlay.classList.add("hidden");
-
   document.body.style.overflow = "";
 }
 
@@ -114,63 +80,42 @@ modalOverlay.addEventListener("click", closeModal);
 function selectColor(color) {
   selectedColor = color;
 
-  if (color === "white") {
-    colorSlider.style.left = "5px";
-    colorSlider.style.width = "131px";
+  const isWhite = color === "white";
 
-    whiteText.classList.remove("text-black");
-    whiteText.classList.add("text-white");
+  colorSlider.style.left = isWhite ? "5px" : "140px";
+  colorSlider.style.width = isWhite ? "131px" : "130px";
 
-    blackText.classList.remove("text-white");
-    blackText.classList.add("text-black");
-  } else {
-    colorSlider.style.left = "140px";
-    colorSlider.style.width = "130px";
+  whiteText.classList.toggle("text-white", isWhite);
+  whiteText.classList.toggle("text-black", !isWhite);
 
-    blackText.classList.remove("text-black");
-    blackText.classList.add("text-white");
-
-    whiteText.classList.remove("text-white");
-    whiteText.classList.add("text-black");
-  }
+  blackText.classList.toggle("text-white", !isWhite);
+  blackText.classList.toggle("text-black", isWhite);
 }
 
 colorWhite.addEventListener("click", () => selectColor("white"));
 colorBlack.addEventListener("click", () => selectColor("black"));
 
 // Size dropdown
+function updateSizeValue() {
+  sizeValue.classList.toggle("left-[13px]", isSizeOpen);
+  sizeValue.classList.toggle("left-0", !isSizeOpen);
+  sizeValue.classList.toggle("w-[216px]", !isSizeOpen);
+  sizeValue.classList.toggle("text-center", !isSizeOpen);
+}
+
 sizeToggle.addEventListener("click", () => {
   isSizeOpen = !isSizeOpen;
 
   sizeDropdown.classList.toggle("hidden", !isSizeOpen);
+  sizeArrow.classList.toggle("rotate-180", isSizeOpen);
 
   if (isSizeOpen) {
-    sizeArrow.classList.add("rotate-180");
-
     sizeValue.textContent = "Choose your size";
-
-    sizeValue.classList.remove(
-      "left-0",
-      "w-[216px]",
-      "text-center"
-    );
-
-    sizeValue.classList.add("left-[13px]");
-  } else {
-    sizeArrow.classList.remove("rotate-180");
-
-    if (selectedSize) {
-      sizeValue.textContent = selectedSize;
-
-      sizeValue.classList.remove("left-[13px]");
-
-      sizeValue.classList.add(
-        "left-0",
-        "w-[216px]",
-        "text-center"
-      );
-    }
+  } else if (selectedSize) {
+    sizeValue.textContent = selectedSize;
   }
+
+  updateSizeValue();
 });
 
 // Size selection
@@ -179,22 +124,13 @@ const sizeOptions = document.querySelectorAll(".size-option");
 sizeOptions.forEach((option) => {
   option.addEventListener("click", () => {
     selectedSize = option.dataset.size;
-
     sizeValue.textContent = selectedSize;
 
-    sizeValue.classList.remove("left-[13px]");
-
-    sizeValue.classList.add(
-      "left-0",
-      "w-[216px]",
-      "text-center"
-    );
-
+    isSizeOpen = false;
     sizeDropdown.classList.add("hidden");
-
     sizeArrow.classList.remove("rotate-180");
 
-    isSizeOpen = false;
+    updateSizeValue();
   });
 });
 
@@ -203,47 +139,29 @@ const menuToggle = document.getElementById("menu-toggle");
 const menuIcon = document.getElementById("menu-icon");
 const mobileMenu = document.getElementById("mobile-menu");
 
-const openMenuUrl = menuIcon.dataset.openMenuUrl;
-const closeMenuUrl = menuIcon.dataset.closeMenuUrl;
+const { openMenuUrl, closeMenuUrl } = menuIcon.dataset;
 
 let isMenuOpen = false;
+
+function updateMenuIcon() {
+  menuIcon.classList.toggle("h-[13px]", isMenuOpen);
+  menuIcon.classList.toggle("w-[12.73px]", isMenuOpen);
+  menuIcon.classList.toggle("h-[10px]", !isMenuOpen);
+  menuIcon.classList.toggle("w-[18px]", !isMenuOpen);
+}
 
 menuToggle.addEventListener("click", () => {
   isMenuOpen = !isMenuOpen;
 
-  if (isMenuOpen) {
-    mobileMenu.classList.remove("hidden");
-    mobileMenu.classList.add("flex");
+  mobileMenu.classList.toggle("hidden", !isMenuOpen);
+  mobileMenu.classList.toggle("flex", isMenuOpen);
 
-    menuIcon.src = closeMenuUrl;
+  menuIcon.src = isMenuOpen ? closeMenuUrl : openMenuUrl;
 
-    menuIcon.classList.remove(
-      "h-[10px]",
-      "w-[18px]"
-    );
+  updateMenuIcon();
 
-    menuIcon.classList.add(
-      "h-[13px]",
-      "w-[12.73px]"
-    );
-
-    menuToggle.setAttribute("aria-label", "Close menu");
-  } else {
-    mobileMenu.classList.add("hidden");
-    mobileMenu.classList.remove("flex");
-
-    menuIcon.src = openMenuUrl;
-
-    menuIcon.classList.remove(
-      "h-[13px]",
-      "w-[12.73px]"
-    );
-
-    menuIcon.classList.add(
-      "h-[10px]",
-      "w-[18px]"
-    );
-
-    menuToggle.setAttribute("aria-label", "Open menu");
-  }
+  menuToggle.setAttribute(
+    "aria-label",
+    isMenuOpen ? "Close menu" : "Open menu"
+  );
 });
