@@ -1905,6 +1905,24 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   transform: scaleX(2.93);
   filter: brightness(0) invert(1);
 }
+/* ---------------add to cart------------------------------ */
+#add-to-cart-btn.is-added {
+  animation: add-to-cart-success 0.4s ease;
+}
+
+@keyframes add-to-cart-success {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.96);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* ------------------------------------------------------------ */
 .products-grid {
