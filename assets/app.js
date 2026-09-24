@@ -81,8 +81,8 @@ productButtons.forEach((button, index) => {
     // Shopify product image
     modalImage.src = button.dataset.productImage;
     modalTitle.textContent = button.dataset.productTitle;
-modalPrice.textContent = button.dataset.productPrice;
-modalDescription.textContent = button.dataset.productDescription;
+    modalPrice.textContent = button.dataset.productPrice;
+    modalDescription.textContent = button.dataset.productDescription;
 
     const colors = productColors[index];
 
@@ -202,7 +202,9 @@ sizeOptions.forEach((option) => {
 const menuToggle = document.getElementById("menu-toggle");
 const menuIcon = document.getElementById("menu-icon");
 const mobileMenu = document.getElementById("mobile-menu");
-const mobilePageContent = document.getElementById("mobile-page-content");
+
+const openMenuUrl = menuIcon.dataset.openMenuUrl;
+const closeMenuUrl = menuIcon.dataset.closeMenuUrl;
 
 let isMenuOpen = false;
 
@@ -213,10 +215,7 @@ menuToggle.addEventListener("click", () => {
     mobileMenu.classList.remove("hidden");
     mobileMenu.classList.add("flex");
 
-    mobilePageContent.classList.remove("max-[376px]:mt-0");
-    mobilePageContent.classList.add("max-[376px]:mt-[124px]");
-
-    menuIcon.src = "assets/close-menu.jpg";
+    menuIcon.src = closeMenuUrl;
 
     menuIcon.classList.remove(
       "h-[10px]",
@@ -233,15 +232,7 @@ menuToggle.addEventListener("click", () => {
     mobileMenu.classList.add("hidden");
     mobileMenu.classList.remove("flex");
 
-    mobilePageContent.classList.remove(
-      "max-[376px]:mt-[124px]"
-    );
-
-    mobilePageContent.classList.add(
-      "max-[376px]:mt-0"
-    );
-
-    menuIcon.src = "assets/open-menu.jpg";
+    menuIcon.src = openMenuUrl;
 
     menuIcon.classList.remove(
       "h-[13px]",
