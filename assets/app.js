@@ -58,21 +58,26 @@ async function getProductVariants() {
 
 // Open product modal
 productButtons.forEach((button, index) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     modalImage.src = button.dataset.productImage;
     currentProductHandle = button.dataset.productHandle;
+
+    const variants = await getProductVariants();
+
+    console.log("Product:", currentProductHandle);
+    console.log("Variants:", variants);
+
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
     modalDescription.textContent = button.dataset.productDescription;
 
-    const [firstColor, firstIndicator, secondColor, secondIndicator] =
-      productColors[index];
+    const colors = productColors[index];
 
-    whiteText.textContent = firstColor;
-    blackText.textContent = secondColor;
+    whiteText.textContent = colors.first;
+    blackText.textContent = colors.second;
 
-    firstColorIndicator.style.backgroundColor = firstIndicator;
-    secondColorIndicator.style.backgroundColor = secondIndicator;
+    firstColorIndicator.style.backgroundColor = colors.firstIndicator;
+    secondColorIndicator.style.backgroundColor = colors.secondIndicator;
 
     modal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
