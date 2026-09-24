@@ -56,6 +56,15 @@ async function getProductVariants() {
   return product.variants;
 }
 
+function findVariant(variants) {
+  return variants.find((variant) => {
+    return (
+      variant.option1 === selectedSize &&
+      variant.option2.toLowerCase() === selectedColor
+    );
+  });
+}
+
 // Open product modal
 productButtons.forEach((button, index) => {
   button.addEventListener("click", async () => {
