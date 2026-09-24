@@ -32,12 +32,42 @@ const addToCartBtn = document.getElementById("add-to-cart-btn");
 
 // Product colors
 const productColors = [
-  ["White", "#FFFFFF", "Black", "#000000"],
-  ["Blue", "#0D499F", "Black", "#000000"],
-  ["Red", "#B20F36", "Grey", "#AFAFB7"],
-  ["White", "#FFFFFF", "Black", "#000000"],
-  ["Gray", "#AFAFB7", "Black", "#000000"],
-  ["Blue", "#0D499F", "Black", "#000000"],
+  {
+    first: "White",
+    firstIndicator: "#FFFFFF",
+    second: "Black",
+    secondIndicator: "#000000",
+  },
+  {
+    first: "Blue",
+    firstIndicator: "#0D499F",
+    second: "Black",
+    secondIndicator: "#000000",
+  },
+  {
+    first: "Red",
+    firstIndicator: "#B20F36",
+    second: "Grey",
+    secondIndicator: "#AFAFB7",
+  },
+  {
+    first: "White",
+    firstIndicator: "#FFFFFF",
+    second: "Black",
+    secondIndicator: "#000000",
+  },
+  {
+    first: "Gray",
+    firstIndicator: "#AFAFB7",
+    second: "Black",
+    secondIndicator: "#000000",
+  },
+  {
+    first: "Blue",
+    firstIndicator: "#0D499F",
+    second: "Black",
+    secondIndicator: "#000000",
+  },
 ];
 
 let selectedColor = "white";
