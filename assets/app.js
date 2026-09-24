@@ -125,6 +125,9 @@ const response = await fetch("/cart/add.js", {
     ],
   }),
 });
+if (!response.ok) {
+  throw new Error("Failed to add product to cart.");
+}
 
 console.log("Selected variant:", variant);
 
