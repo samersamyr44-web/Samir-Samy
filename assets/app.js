@@ -66,6 +66,13 @@ function findVariant(variants) {
   });
 }
 
+addToCartBtn.addEventListener("click", async () => {
+  const variants = await getProductVariants();
+  const variant = findVariant(variants);
+
+  console.log("Selected variant:", variant);
+});
+
 // Open product modal
 productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
