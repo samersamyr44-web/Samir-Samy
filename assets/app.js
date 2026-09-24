@@ -109,6 +109,7 @@ productButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
     modalImage.src = button.dataset.productImage;
     currentProductHandle = button.dataset.productHandle;
+    currentProductIndex = index;
 
     modalTitle.textContent = button.dataset.productTitle;
     modalPrice.textContent = button.dataset.productPrice;
