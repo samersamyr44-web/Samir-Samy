@@ -156,8 +156,13 @@ function selectColor(color) {
   blackText.classList.toggle("text-black", isFirstColor);
 }
 
-colorWhite.addEventListener("click", () => selectColor("white"));
-colorBlack.addEventListener("click", () => selectColor("black"));
+colorWhite.addEventListener("click", () => {
+  selectColor(productColors[currentProductIndex].first);
+});
+
+colorBlack.addEventListener("click", () => {
+  selectColor(productColors[currentProductIndex].second);
+});
 
 // Size dropdown
 function updateSizeValue() {
